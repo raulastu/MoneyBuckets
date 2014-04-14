@@ -12,7 +12,7 @@
 // Protocol definition starts here
 @protocol GroupTableDelegate <NSObject>
 @required
-- (void) addGroup;
+- (void) addGroup:(NSString*)groupName withColor:(NSString*)colorName;
 @end
 // Protocol Definition ends here
 

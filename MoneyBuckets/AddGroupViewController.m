@@ -53,7 +53,7 @@
 //    Uniquenes Validation
     NSString *groupName = self.name.text;
     NSString *colorName = self.colorField.text;
-    [self.delegate addGroup];
+    [self.delegate addGroup: groupName withColor:colorName];
 }
 
 /*

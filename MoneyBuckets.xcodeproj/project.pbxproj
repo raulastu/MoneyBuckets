@@ -11,14 +11,14 @@
 		5192410E18FB553E007BB39D /* GroupTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192410C18FB553E007BB39D /* GroupTableViewController.m */; };
 		5192411118FB587C007BB39D /* AddGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411018FB587C007BB39D /* AddGroupViewController.m */; };
 		5192411218FB587C007BB39D /* AddGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411018FB587C007BB39D /* AddGroupViewController.m */; };
+		5192411518FB6BCB007BB39D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411418FB6BCB007BB39D /* AppDelegate.m */; };
+		5192411618FB6BCB007BB39D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411418FB6BCB007BB39D /* AppDelegate.m */; };
 		51DC0FF618FB48E200B4C321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC0FF518FB48E200B4C321 /* Foundation.framework */; };
 		51DC0FF818FB48E200B4C321 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC0FF718FB48E200B4C321 /* CoreGraphics.framework */; };
 		51DC0FFA18FB48E200B4C321 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC0FF918FB48E200B4C321 /* UIKit.framework */; };
 		51DC100018FB48E200B4C321 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 51DC0FFE18FB48E200B4C321 /* InfoPlist.strings */; };
 		51DC100218FB48E200B4C321 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DC100118FB48E200B4C321 /* main.m */; };
-		51DC100618FB48E200B4C321 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DC100518FB48E200B4C321 /* AppDelegate.m */; };
 		51DC100918FB48E200B4C321 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 51DC100718FB48E200B4C321 /* Main.storyboard */; };
-		51DC100C18FB48E200B4C321 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DC100B18FB48E200B4C321 /* ViewController.m */; };
 		51DC100E18FB48E300B4C321 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 51DC100D18FB48E300B4C321 /* Images.xcassets */; };
 		51DC101518FB48E300B4C321 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC101418FB48E300B4C321 /* XCTest.framework */; };
 		51DC101618FB48E300B4C321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC0FF518FB48E200B4C321 /* Foundation.framework */; };
@@ -44,6 +44,8 @@
 		5192410C18FB553E007BB39D /* GroupTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupTableViewController.m; sourceTree = "<group>"; };
 		5192410F18FB587C007BB39D /* AddGroupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddGroupViewController.h; sourceTree = "<group>"; };
 		5192411018FB587C007BB39D /* AddGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupViewController.m; sourceTree = "<group>"; };
+		5192411318FB6BCB007BB39D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		5192411418FB6BCB007BB39D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		51DC0FF218FB48E200B4C321 /* MoneyBuckets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyBuckets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51DC0FF518FB48E200B4C321 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		51DC0FF718FB48E200B4C321 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -52,11 +54,7 @@
 		51DC0FFF18FB48E200B4C321 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		51DC100118FB48E200B4C321 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		51DC100318FB48E200B4C321 /* MoneyBuckets-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MoneyBuckets-Prefix.pch"; sourceTree = "<group>"; };
-		51DC100418FB48E200B4C321 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		51DC100518FB48E200B4C321 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		51DC100818FB48E200B4C321 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		51DC100A18FB48E200B4C321 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		51DC100B18FB48E200B4C321 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		51DC100D18FB48E300B4C321 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		51DC101318FB48E300B4C321 /* MoneyBucketsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoneyBucketsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		51DC101418FB48E300B4C321 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -123,12 +121,10 @@
 		51DC0FFB18FB48E200B4C321 /* MoneyBuckets */ = {
 			isa = PBXGroup;
 			children = (
+				5192411318FB6BCB007BB39D /* AppDelegate.h */,
+				5192411418FB6BCB007BB39D /* AppDelegate.m */,
 				51DC102D18FB494300B4C321 /* AppModel.xcdatamodeld */,
-				51DC100418FB48E200B4C321 /* AppDelegate.h */,
-				51DC100518FB48E200B4C321 /* AppDelegate.m */,
 				51DC100718FB48E200B4C321 /* Main.storyboard */,
-				51DC100A18FB48E200B4C321 /* ViewController.h */,
-				51DC100B18FB48E200B4C321 /* ViewController.m */,
 				51DC100D18FB48E300B4C321 /* Images.xcassets */,
 				5192410B18FB553E007BB39D /* GroupTableViewController.h */,
 				5192410C18FB553E007BB39D /* GroupTableViewController.m */,
@@ -267,10 +263,9 @@
 			files = (
 				5192411118FB587C007BB39D /* AddGroupViewController.m in Sources */,
 				5192410D18FB553E007BB39D /* GroupTableViewController.m in Sources */,
-				51DC100C18FB48E200B4C321 /* ViewController.m in Sources */,
-				51DC100618FB48E200B4C321 /* AppDelegate.m in Sources */,
 				51DC100218FB48E200B4C321 /* main.m in Sources */,
 				51DC102F18FB494300B4C321 /* AppModel.xcdatamodeld in Sources */,
+				5192411518FB6BCB007BB39D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,6 +277,7 @@
 				51DC102118FB48E300B4C321 /* MoneyBucketsTests.m in Sources */,
 				51DC103018FB494300B4C321 /* AppModel.xcdatamodeld in Sources */,
 				5192410E18FB553E007BB39D /* GroupTableViewController.m in Sources */,
+				5192411618FB6BCB007BB39D /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

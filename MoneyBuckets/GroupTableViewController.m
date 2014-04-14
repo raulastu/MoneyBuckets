@@ -54,9 +54,9 @@
 
 #pragma mark - AddGroup Modal
 
-- (void)addGroup
+- (void)addGroup:(NSString*)groupName withColor:(NSString*)colorName
 {
-    NSLog(@"GroupTableViewController.addGroup");
+    NSLog(@"%@ %@ %@", @"GroupTableViewController.addGroup", groupName, colorName);
 }
 
 
