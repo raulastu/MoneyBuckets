@@ -11,4 +11,8 @@
 
 @interface GroupTableViewController : UITableViewController <GroupTableDelegate>
 
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+@property (nonatomic,strong) NSArray* groupInfos;
+
+
 @end

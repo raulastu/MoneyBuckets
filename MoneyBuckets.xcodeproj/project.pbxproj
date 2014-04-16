@@ -13,6 +13,10 @@
 		5192411218FB587C007BB39D /* AddGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411018FB587C007BB39D /* AddGroupViewController.m */; };
 		5192411518FB6BCB007BB39D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411418FB6BCB007BB39D /* AppDelegate.m */; };
 		5192411618FB6BCB007BB39D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411418FB6BCB007BB39D /* AppDelegate.m */; };
+		5192411818FB9A5B007BB39D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5192411718FB9A5B007BB39D /* CoreData.framework */; };
+		5192411C18FE2ADD007BB39D /* Group.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192411B18FE2ADD007BB39D /* Group.m */; };
+		5192412218FE2ADE007BB39D /* Bucket.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192412118FE2ADE007BB39D /* Bucket.m */; };
+		5192412518FE2B64007BB39D /* Instance.m in Sources */ = {isa = PBXBuildFile; fileRef = 5192412418FE2B64007BB39D /* Instance.m */; };
 		51DC0FF618FB48E200B4C321 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC0FF518FB48E200B4C321 /* Foundation.framework */; };
 		51DC0FF818FB48E200B4C321 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC0FF718FB48E200B4C321 /* CoreGraphics.framework */; };
 		51DC0FFA18FB48E200B4C321 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51DC0FF918FB48E200B4C321 /* UIKit.framework */; };
@@ -46,6 +50,13 @@
 		5192411018FB587C007BB39D /* AddGroupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddGroupViewController.m; sourceTree = "<group>"; };
 		5192411318FB6BCB007BB39D /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5192411418FB6BCB007BB39D /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		5192411718FB9A5B007BB39D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		5192411A18FE2ADD007BB39D /* Group.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Group.h; sourceTree = "<group>"; };
+		5192411B18FE2ADD007BB39D /* Group.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Group.m; sourceTree = "<group>"; };
+		5192412018FE2ADE007BB39D /* Bucket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bucket.h; sourceTree = "<group>"; };
+		5192412118FE2ADE007BB39D /* Bucket.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bucket.m; sourceTree = "<group>"; };
+		5192412318FE2B64007BB39D /* Instance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Instance.h; sourceTree = "<group>"; };
+		5192412418FE2B64007BB39D /* Instance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Instance.m; sourceTree = "<group>"; };
 		51DC0FF218FB48E200B4C321 /* MoneyBuckets.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyBuckets.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51DC0FF518FB48E200B4C321 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		51DC0FF718FB48E200B4C321 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -69,6 +80,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5192411818FB9A5B007BB39D /* CoreData.framework in Frameworks */,
 				51DC0FF818FB48E200B4C321 /* CoreGraphics.framework in Frameworks */,
 				51DC0FFA18FB48E200B4C321 /* UIKit.framework in Frameworks */,
 				51DC0FF618FB48E200B4C321 /* Foundation.framework in Frameworks */,
@@ -88,6 +100,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5192411918FE2AB2007BB39D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				5192412018FE2ADE007BB39D /* Bucket.h */,
+				5192412118FE2ADE007BB39D /* Bucket.m */,
+				5192411A18FE2ADD007BB39D /* Group.h */,
+				5192411B18FE2ADD007BB39D /* Group.m */,
+				5192412318FE2B64007BB39D /* Instance.h */,
+				5192412418FE2B64007BB39D /* Instance.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		51DC0FE918FB48E200B4C321 = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +135,7 @@
 		51DC0FF418FB48E200B4C321 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5192411718FB9A5B007BB39D /* CoreData.framework */,
 				51DC0FF518FB48E200B4C321 /* Foundation.framework */,
 				51DC0FF718FB48E200B4C321 /* CoreGraphics.framework */,
 				51DC0FF918FB48E200B4C321 /* UIKit.framework */,
@@ -121,9 +147,10 @@
 		51DC0FFB18FB48E200B4C321 /* MoneyBuckets */ = {
 			isa = PBXGroup;
 			children = (
+				51DC102D18FB494300B4C321 /* AppModel.xcdatamodeld */,
+				5192411918FE2AB2007BB39D /* Model */,
 				5192411318FB6BCB007BB39D /* AppDelegate.h */,
 				5192411418FB6BCB007BB39D /* AppDelegate.m */,
-				51DC102D18FB494300B4C321 /* AppModel.xcdatamodeld */,
 				51DC100718FB48E200B4C321 /* Main.storyboard */,
 				51DC100D18FB48E300B4C321 /* Images.xcassets */,
 				5192410B18FB553E007BB39D /* GroupTableViewController.h */,
@@ -211,6 +238,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = huahlabs;
 				TargetAttributes = {
+					51DC0FF118FB48E200B4C321 = {
+						DevelopmentTeam = JW8PEV4Q56;
+					};
 					51DC101218FB48E300B4C321 = {
 						TestTargetID = 51DC0FF118FB48E200B4C321;
 					};
@@ -262,8 +292,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				5192411118FB587C007BB39D /* AddGroupViewController.m in Sources */,
+				5192412218FE2ADE007BB39D /* Bucket.m in Sources */,
+				5192412518FE2B64007BB39D /* Instance.m in Sources */,
 				5192410D18FB553E007BB39D /* GroupTableViewController.m in Sources */,
 				51DC100218FB48E200B4C321 /* main.m in Sources */,
+				5192411C18FE2ADD007BB39D /* Group.m in Sources */,
 				51DC102F18FB494300B4C321 /* AppModel.xcdatamodeld in Sources */,
 				5192411518FB6BCB007BB39D /* AppDelegate.m in Sources */,
 			);
@@ -394,10 +427,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoneyBuckets/MoneyBuckets-Prefix.pch";
 				INFOPLIST_FILE = "MoneyBuckets/MoneyBuckets-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -407,10 +443,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MoneyBuckets/MoneyBuckets-Prefix.pch";
 				INFOPLIST_FILE = "MoneyBuckets/MoneyBuckets-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

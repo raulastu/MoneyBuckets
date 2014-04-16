@@ -11,5 +11,8 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (nonatomic,strong) NSManagedObjectContext* __managedObjectContext;
+@property (nonatomic,strong) NSPersistentStoreCoordinator* __persistentStoreCoordinator;
+@property (nonatomic,strong) NSManagedObjectModel* __managedObjectModel;
 
 @end

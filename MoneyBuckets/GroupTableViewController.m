@@ -7,12 +7,17 @@
 //
 
 #import "GroupTableViewController.h"
+#import "Group.h"
 
 @interface GroupTableViewController ()
 
 @end
 
+
 @implementation GroupTableViewController
+
+@synthesize managedObjectContext;
+@synthesize groupInfos;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,6 +32,14 @@
 {
     [super viewDidLoad];
     
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Group" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    self.groupInfos = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+//    NSLog(self.groupInfos);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -52,6 +65,7 @@
 }
 
 
+
 #pragma mark - AddGroup Modal
 
 - (void)addGroup:(NSString*)groupName withColor:(NSString*)colorName
@@ -64,40 +78,53 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [self.groupInfos count];
 }
 
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"groupCell" forIndexPath:indexPath];
+    
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"groupCell"];
+    }
     
     // Configure the cell...
+    cell.textLabel.text=[[self.groupInfos objectAtIndex:indexPath.row] name];
+    cell.detailTextLabel.text=[[self.groupInfos objectAtIndex:indexPath.row] color];
     
     return cell;
 }
-*/
 
-/*
+
+
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
     return YES;
 }
-*/
 
-/*
+//-(NSString *)tableView:(UITableView *)tableView titleForSwipeAccessoryButtonForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//        return @"Delete";
+//}
+
+-(void)tableView:(UITableView *)tableView swipeAccessoryButtonPushedForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+}
+
+
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -108,7 +135,7 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
-*/
+
 
 /*
 // Override to support rearranging the table view.

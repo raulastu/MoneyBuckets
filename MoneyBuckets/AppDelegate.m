@@ -7,40 +7,153 @@
 //
 
 #import "AppDelegate.h"
+#import "GroupTableViewController.h"
+
+#import "Group.h"
+#import "Bucket.h"
 
 @implementation AppDelegate
+
+
+@synthesize window = _window;
+
+@synthesize __managedObjectContext;
+@synthesize __persistentStoreCoordinator;
+@synthesize __managedObjectModel;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    NSManagedObjectContext *context = [self managedObjectContext];
+//    NSManagedObject *group = [NSEntityDescription
+//                                       insertNewObjectForEntityForName:@"Group"
+//                                       inManagedObjectContext:context];
+//    [group setValue:@"Debts" forKeyPath:@"name"];
+//    [group setValue:@"Green" forKeyPath:@"color"];
+//    
+    NSError *error;
+//    if (![context save:&error]) {
+//        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+//    }
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Group"
+                                              inManagedObjectContext:context];
+    [fetchRequest setEntity:entity];
+    NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
+    for (Group *info in fetchedObjects) {
+        NSLog(@"Name: %@", info.name);
+        NSLog(@"Zip: %@", info.color);
+    }
+    
+    
+    UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
+    GroupTableViewController *controller = (GroupTableViewController *)navigationController.topViewController;
+    controller.managedObjectContext = self.managedObjectContext;
+    
+    
     return YES;
 }
-							
-- (void)applicationWillResignActive:(UIApplication *)application
+
+//#pragma core data stuff
+//
+//- (void)setupManagedObjectContext
+//{
+//    self.managedObjectContext =
+//    [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+//    self.managedObjectContext.persistentStoreCoordinator =
+//    [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: self.managedObjectModel];
+//    NSError* error;
+//    [self.managedObjectContext.persistentStoreCoordinator
+//     addPersistentStoreWithType:NSSQLiteStoreType
+//     configuration:nil
+//     URL:self.storeURL
+//     options:nil
+//     error:&error];
+//    if (error) {
+//        NSLog(@"error: %@", error);
+//    }
+//    self.managedObjectContext.undoManager = [[NSUndoManager alloc] init];
+//}
+
+#pragma mark - Core Data stack
+
+// Returns the managed object context for the application.
+// If the context doesn't already exist, it is created and bound to the persistent store coordinator for the application.
+- (NSManagedObjectContext *)managedObjectContext
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    if (__managedObjectContext != nil) {
+        return __managedObjectContext;
+    }
+    
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        __managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+    }
+    return __managedObjectContext;
 }
 
-- (void)applicationDidEnterBackground:(UIApplication *)application
+- (NSManagedObjectModel *)managedObjectModel
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-    // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    if (__managedObjectModel != nil) {
+        return __managedObjectModel;
+    }
+    NSURL *modelURL = [[NSBundle mainBundle] URLForResource:@"AppModel" withExtension:@"momd"];
+    __managedObjectModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:modelURL];
+    return __managedObjectModel;
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application
+// Returns the persistent store coordinator for the application.
+// If the coordinator doesn't already exist, it is created and the application's store added to it.
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
 {
-    // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    if (__persistentStoreCoordinator != nil) {
+        return __persistentStoreCoordinator;
+    }
+    
+    NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"MoneyBuckets.sqlite"];
+    
+    NSError *error = nil;
+    __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+        /*
+         Replace this implementation with code to handle the error appropriately.
+         
+         abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+         
+         Typical reasons for an error here include:
+         * The persistent store is not accessible;
+         * The schema for the persistent store is incompatible with current managed object model.
+         Check the error message to determine what the actual problem was.
+         
+         
+         If the persistent store is not accessible, there is typically something wrong with the file path. Often, a file URL is pointing into the application's resources directory instead of a writeable directory.
+         
+         If you encounter schema incompatibility errors during development, you can reduce their frequency by:
+         * Simply deleting the existing store:
+         [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil]
+         
+         * Performing automatic lightweight migration by passing the following dictionary as the options parameter:
+         [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, nil];
+         
+         Lightweight migration will only work for a limited set of schema changes; consult "Core Data Model Versioning and Data Migration Programming Guide" for details.
+         
+         */
+        NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
+        abort();
+    }
+    
+    return __persistentStoreCoordinator;
 }
 
-- (void)applicationDidBecomeActive:(UIApplication *)application
-{
-    // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-}
+#pragma mark - Application's Documents directory
 
-- (void)applicationWillTerminate:(UIApplication *)application
+// Returns the URL to the application's Documents directory.
+- (NSURL *)applicationDocumentsDirectory
 {
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
 }
 
 @end

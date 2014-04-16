@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="Bucket" syncable="YES">
+    <entity name="Bucket" representedClassName="Bucket" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="group" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Group" inverseName="buckets" inverseEntity="Group" syncable="YES"/>
-        <relationship name="instances" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Instance" inverseName="bucket" inverseEntity="Instance" syncable="YES"/>
+        <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Instance" inverseName="bucket" inverseEntity="Instance" syncable="YES"/>
     </entity>
-    <entity name="Group" syncable="YES">
+    <entity name="Group" representedClassName="Group" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="buckets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bucket" inverseName="group" inverseEntity="Bucket" syncable="YES"/>
     </entity>
-    <entity name="Instance" syncable="YES">
+    <entity name="Instance" representedClassName="Instance" syncable="YES">
         <attribute name="money" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="when" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="bucket" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Bucket" inverseName="instances" inverseEntity="Bucket" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Group" positionX="-234" positionY="-126" width="128" height="88"/>
         <element name="Bucket" positionX="7" positionY="18" width="128" height="88"/>
-        <element name="Instance" positionX="216" positionY="-88" width="128" height="103"/>
+        <element name="Group" positionX="-234" positionY="-126" width="128" height="88"/>
+        <element name="Instance" positionX="198" positionY="-153" width="128" height="103"/>
     </elements>
 </model>
