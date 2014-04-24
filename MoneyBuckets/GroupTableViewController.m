@@ -7,6 +7,7 @@
 //
 
 #import "GroupTableViewController.h"
+#import "BucketTableViewController.h"
 #import "Group.h"
 
 @interface GroupTableViewController ()
@@ -18,6 +19,8 @@
 
 @synthesize managedObjectContext;
 @synthesize groupInfos;
+
+Group * selectedGroup;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -32,13 +35,8 @@
 {
     [super viewDidLoad];
     
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [NSEntityDescription
-                                   entityForName:@"Group" inManagedObjectContext:managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSError *error;
-    self.groupInfos = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
+    [self reloadGroupList];
+//    self 
 //    NSLog(self.groupInfos);
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -53,24 +51,42 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Make sure your segue name in storyboard is the same as this line
-    if ([[segue identifier] isEqualToString:@"AddGroupSegue"])
-    {
-        // Get reference to the destination view controller
-        AddGroupViewController *vc = [segue destinationViewController];
-        vc.delegate=self;
-    }
+-(void) reloadGroupList {
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription
+                                   entityForName:@"Group" inManagedObjectContext:managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError *error;
+    self.groupInfos = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
 }
 
 
 
 #pragma mark - AddGroup Modal
 
-- (void)addGroup:(NSString*)groupName withColor:(NSString*)colorName
+- (void)addGroup:(NSString*)groupName withColor:(NSString*)colorCode
 {
-    NSLog(@"%@ %@ %@", @"GroupTableViewController.addGroup", groupName, colorName);
+    
+    Group *group = [NSEntityDescription
+                                            insertNewObjectForEntityForName:@"Group"
+                                            inManagedObjectContext:managedObjectContext];
+
+//    [group setValue:groupName forKeyPath:@"name"];
+//    [group setValue:colorCode forKeyPath:@"colorCode"];
+    group.name = groupName;
+    group.colorCode = colorCode;
+    group.buckets = [group.buckets init];
+//    [group addBuckets: [[NSOrderedSet init]alloc]];
+//    [group setValue:NS forKeyPath:@"buckets"];
+    
+    NSError *error;
+    if (![managedObjectContext save:&error]) {
+        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+    }
+    NSLog(@"%@ %@ %@", @"GroupTableViewController.addGroup", groupName, colorCode);
+//    [self refreshControl];
+    [self reloadGroupList];
+    [self.tableView reloadData];
 }
 
 
@@ -78,13 +94,11 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
     return [self.groupInfos count];
 }
 
@@ -100,11 +114,41 @@
     
     // Configure the cell...
     cell.textLabel.text=[[self.groupInfos objectAtIndex:indexPath.row] name];
-    cell.detailTextLabel.text=[[self.groupInfos objectAtIndex:indexPath.row] color];
+    cell.detailTextLabel.text=[[self.groupInfos objectAtIndex:indexPath.row] colorCode];
     
     return cell;
 }
 
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath{
+//    NSLog(@"%l", indexPath.row);
+    NSLog(@"xl");
+}
+
+//- (void)table
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"%@",indexPath);
+    selectedGroup = [groupInfos objectAtIndex:indexPath.row];
+    [self performSegueWithIdentifier:@"GroupBucketsSegue" sender:self];
+}
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Make sure your segue name in storyboard is the same as this line
+    if ([[segue identifier] isEqualToString:@"AddGroupSegue"])
+    {
+        // Get reference to the destination view controller
+        AddGroupViewController *vc = [segue destinationViewController];
+        vc.delegate=self;
+    }else if([[segue identifier] isEqualToString:@"GroupBucketsSegue"]){
+        BucketTableViewController *vc = [segue destinationViewController];
+        vc.managedObjectContext = [self managedObjectContext];
+        vc.group = selectedGroup;
+        NSLog(@"%@", selectedGroup);
+        //        vc.delegate=self;
+    }
+}
 
 
 // Override to support conditional editing of the table view.
@@ -130,6 +174,13 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
+        Group * group = [groupInfos objectAtIndex:indexPath.row];
+        [managedObjectContext deleteObject:group];
+        NSError *error;
+        if (![managedObjectContext save:&error]) {
+            NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
+        }
+        [self reloadGroupList];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view

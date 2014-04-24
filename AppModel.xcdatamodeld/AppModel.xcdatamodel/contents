@@ -6,7 +6,7 @@
         <relationship name="instances" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Instance" inverseName="bucket" inverseEntity="Instance" syncable="YES"/>
     </entity>
     <entity name="Group" representedClassName="Group" syncable="YES">
-        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="colorCode" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="buckets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Bucket" inverseName="group" inverseEntity="Bucket" syncable="YES"/>
     </entity>

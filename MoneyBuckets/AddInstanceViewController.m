@@ -1,25 +1,24 @@
 //
-//  AddGroupViewController.m
+//  AddInstanceViewController.m
 //  MoneyBuckets
 //
-//  Created by Raul Ramirez on 4/13/14.
+//  Created by Raul Ramirez on 4/24/14.
 //  Copyright (c) 2014 huahlabs. All rights reserved.
 //
 
-#import "AddGroupViewController.h"
+#import "AddInstanceViewController.h"
 
-@interface AddGroupViewController ()
-
-@property (weak, nonatomic) IBOutlet UITextField *name;
-
-@property (weak, nonatomic) IBOutlet UITextField *colorField;
+@interface AddInstanceViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *txtInstanceName;
+@property (weak, nonatomic) IBOutlet UITextField *txtMoney;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePickerMoney;
 
 @end
 
-@implementation AddGroupViewController
 
-@synthesize delegate = _delegate;
+@implementation AddInstanceViewController
 
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,17 +40,20 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-- (IBAction)Cancel:(id)sender {
-//    self.name.text=@"";
-    [self dismissViewControllerAnimated:YES completion:nil];
 
-}
-- (IBAction)SaveGroup:(id)sender {
+
+- (IBAction)saveInstance:(id)sender {
+    NSString * instanceName = self.txtInstanceName.text;
     
-    //  Input Validation
-    NSString *groupName = self.name.text;
-    NSString *colorName = self.colorField.text;
-    [self.delegate addGroup: groupName withColor:colorName];
+    NSNumberFormatter * f = [[NSNumberFormatter alloc] init];
+    [f setNumberStyle:NSNumberFormatterDecimalStyle];
+    NSNumber * money = [f numberFromString:self.txtMoney.text];
+    
+    NSDate * when = self.datePickerMoney.date;
+    [self.delegate addInstance:instanceName withDate:when withMoneyAmount:money];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+- (IBAction)cancel:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -1,25 +1,22 @@
 //
-//  AddGroupViewController.m
+//  AddBucketViewController.m
 //  MoneyBuckets
 //
-//  Created by Raul Ramirez on 4/13/14.
+//  Created by Raul Ramirez on 4/17/14.
 //  Copyright (c) 2014 huahlabs. All rights reserved.
 //
 
-#import "AddGroupViewController.h"
+#import "AddBucketViewController.h"
 
-@interface AddGroupViewController ()
-
-@property (weak, nonatomic) IBOutlet UITextField *name;
-
-@property (weak, nonatomic) IBOutlet UITextField *colorField;
+@interface AddBucketViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *txtBucketName;
 
 @end
 
-@implementation AddGroupViewController
+@implementation AddBucketViewController
 
-@synthesize delegate = _delegate;
 
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -36,23 +33,20 @@
     // Do any additional setup after loading the view.
 }
 
+- (IBAction)saveBucket:(id)sender {
+    NSString * bucketName = self.txtBucketName.text;
+    [self.delegate addBucket:bucketName];
+    [self dismissViewControllerAnimated:YES completion:nil];
+
+}
+- (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)Cancel:(id)sender {
-//    self.name.text=@"";
-    [self dismissViewControllerAnimated:YES completion:nil];
-
-}
-- (IBAction)SaveGroup:(id)sender {
-    
-    //  Input Validation
-    NSString *groupName = self.name.text;
-    NSString *colorName = self.colorField.text;
-    [self.delegate addGroup: groupName withColor:colorName];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 /*

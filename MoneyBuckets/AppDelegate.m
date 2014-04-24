@@ -20,6 +20,14 @@
 @synthesize __managedObjectContext;
 @synthesize __persistentStoreCoordinator;
 @synthesize __managedObjectModel;
+//@synthesize hola;
+
+
+- (NSString*) hola{
+    if(_hola==nil)
+        return _hola;
+    else return @"";
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -44,9 +52,9 @@
     NSArray *fetchedObjects = [context executeFetchRequest:fetchRequest error:&error];
     for (Group *info in fetchedObjects) {
         NSLog(@"Name: %@", info.name);
-        NSLog(@"Zip: %@", info.color);
+        NSLog(@"Zip: %@", info.colorCode);
     }
-    
+//    NSLog(_hola);
     
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     GroupTableViewController *controller = (GroupTableViewController *)navigationController.topViewController;

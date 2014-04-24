@@ -18,7 +18,6 @@
 
 @interface AddGroupViewController : UIViewController
 
-
 @property (nonatomic, weak) id<GroupTableDelegate> delegate;
 
 
