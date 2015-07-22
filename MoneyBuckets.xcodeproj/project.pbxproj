@@ -85,6 +85,7 @@
 		51DF66F61908DAD70025D72D /* InstanceTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstanceTableViewController.m; sourceTree = "<group>"; };
 		51DF66F81908DE2E0025D72D /* AddInstanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddInstanceViewController.h; sourceTree = "<group>"; };
 		51DF66F91908DE2E0025D72D /* AddInstanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddInstanceViewController.m; sourceTree = "<group>"; };
+		51DF66FB190CBED60025D72D /* MoneyBuckets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = MoneyBuckets.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +160,7 @@
 		51DC0FFB18FB48E200B4C321 /* MoneyBuckets */ = {
 			isa = PBXGroup;
 			children = (
+				51DF66FB190CBED60025D72D /* MoneyBuckets.entitlements */,
 				51DC102D18FB494300B4C321 /* AppModel.xcdatamodeld */,
 				5192411918FE2AB2007BB39D /* Model */,
 				5192411318FB6BCB007BB39D /* AppDelegate.h */,
@@ -260,6 +262,11 @@
 				TargetAttributes = {
 					51DC0FF118FB48E200B4C321 = {
 						DevelopmentTeam = JW8PEV4Q56;
+						SystemCapabilities = {
+							com.apple.iCloud = {
+								enabled = 1;
+							};
+						};
 					};
 					51DC101218FB48E300B4C321 = {
 						TestTargetID = 51DC0FF118FB48E200B4C321;
@@ -451,6 +458,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = MoneyBuckets/MoneyBuckets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -467,6 +475,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = MoneyBuckets/MoneyBuckets.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

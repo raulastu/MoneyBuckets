@@ -10,29 +10,29 @@
 	<string>MoneyBuckets</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>2E83BC84-D361-4D19-92F0-6D2D88B85753</key>
+		<key>317E4D7F0C669CB5EF3C70D11CA352EEF2D26950</key>
 		<string>https://github.com/raulooo/MoneyBuckets.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>MoneyBuckets.xcodeproj/project.xcworkspace</string>
+	<string>MoneyBuckets.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>2E83BC84-D361-4D19-92F0-6D2D88B85753</key>
+		<key>317E4D7F0C669CB5EF3C70D11CA352EEF2D26950</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/raulooo/MoneyBuckets.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>2E83BC84-D361-4D19-92F0-6D2D88B85753</string>
+	<string>317E4D7F0C669CB5EF3C70D11CA352EEF2D26950</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>2E83BC84-D361-4D19-92F0-6D2D88B85753</string>
+			<string>317E4D7F0C669CB5EF3C70D11CA352EEF2D26950</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MoneyBuckets</string>
 		</dict>

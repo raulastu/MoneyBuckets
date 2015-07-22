@@ -10,7 +10,13 @@
 #import "GroupTableViewController.h"
 
 #import "Group.h"
+
 #import "Bucket.h"
+
+//#import "Foundation.framework.h"
+
+//#import "NSFileManager.h"
+
 
 @implementation AppDelegate
 
@@ -31,15 +37,52 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
+
+    id currentiCloudToken = [[NSFileManager defaultManager] ubiquityIdentityToken];
+    
+    if (currentiCloudToken) {
+        NSData *newTokenData =
+        [NSKeyedArchiver archivedDataWithRootObject: currentiCloudToken];
+        [[NSUserDefaults standardUserDefaults]
+         setObject: newTokenData
+         forKey: @"com.apple.MoneyBuckets.UbiquityIdentityToken"];
+    } else {
+        [[NSUserDefaults standardUserDefaults]
+         removeObjectForKey: @"com.apple.MoneyBuckets.UbiquityIdentityToken"];
+    }
+  
+    [[NSNotificationCenter defaultCenter]
+     addObserver: self
+     selector: @selector (iCloudAccountAvailabilityChanged:)
+     name: NSUbiquityIdentityDidChangeNotification
+     object: nil];
+    
+    NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
+    NSString * firstLaunchWithiCloudAvailable = [userDef objectForKey:@"com.huahlabs.MoneyBuckets.firstLaunchWithiCloudAvailable"];
+    
+    
+    if (currentiCloudToken && ![firstLaunchWithiCloudAvailable isEqualToString:@"YES"]) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Choose Storage Option"
+                              message: @"Should documents be stored in iCloud and available on all your devices?"
+                              delegate: self
+                              cancelButtonTitle: @"Local Only"
+                              otherButtonTitles: @"Use iCloud",
+                               nil];
+        [alert show];
+    }
+    
+    
+
+    NSURL *url = [[NSFileManager defaultManager] URLForUbiquityContainerIdentifier:nil];
+    
+    
+    NSLog(@"%@", currentiCloudToken);
+    
+    
     
     NSManagedObjectContext *context = [self managedObjectContext];
-//    NSManagedObject *group = [NSEntityDescription
-//                                       insertNewObjectForEntityForName:@"Group"
-//                                       inManagedObjectContext:context];
-//    [group setValue:@"Debts" forKeyPath:@"name"];
-//    [group setValue:@"Green" forKeyPath:@"color"];
-//    
+    
     NSError *error;
 //    if (![context save:&error]) {
 //        NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
@@ -62,6 +105,14 @@
     
     
     return YES;
+}
+
+-(void) alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger) buttonIndex{
+    if(buttonIndex==1){
+        NSUserDefaults * userDef = [NSUserDefaults standardUserDefaults];
+        [userDef setObject:@"YES" forKey:@"com.huahlabs.MoneyBuckets.firstLaunchWithiCloudAvailable"];
+        [userDef synchronize];
+    }
 }
 
 //#pragma core data stuff

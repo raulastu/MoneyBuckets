@@ -98,6 +98,9 @@
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"instanceCell"];
     }
+    UILabel * nameLabel = (UILabel *) [cell viewWithTag:100];
+    UILabel * dateLabel = (UILabel *) [cell viewWithTag:101];
+    UILabel * moneyLabel = (UILabel *) [cell viewWithTag:102];
     
     // Configure the cell...
     //    NSArray * ar = [NSArray arrayWithArray: ];
@@ -105,8 +108,19 @@
     [descs addObject:@"name"];
     NSArray * ar = [[self.bucket instances] allObjects];
     
-    cell.textLabel.text=[[ar objectAtIndex:indexPath.row] name];
-    cell.detailTextLabel.text = [[[ar objectAtIndex:indexPath.row] money] stringValue];
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy"];
+    
+    //Optionally for time zone converstions
+//    [formatter setTimeZone:[NSTimeZone timeZoneWithName:@"..."]];
+    
+    NSString *stringFromDate = [formatter stringFromDate:[[ar objectAtIndex:indexPath.row] when]];
+    
+    
+    
+    nameLabel.text=[[ar objectAtIndex:indexPath.row] name];
+    dateLabel.text=stringFromDate;
+    moneyLabel.text = [[[ar objectAtIndex:indexPath.row] money] stringValue];
     return cell;
 }
 
